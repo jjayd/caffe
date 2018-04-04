@@ -290,6 +290,11 @@ class Layer {
     }
     param_propagate_down_[param_id] = value;
   }
+  /************ For dynamic network surgery ***************/  
+  inline void set_current_iter_num(const int iter_num) {
+    iter_ = iter_num;
+  }
+  /********************************************************/
 
 
  protected:
@@ -297,6 +302,10 @@ class Layer {
   LayerParameter layer_param_;
   /** The phase: TRAIN or TEST */
   Phase phase_;
+  /************ For dynamic network surgery ***************/  
+  /** The current iteration number */
+  int iter_;
+  /********************************************************/
   /** The vector that stores the learnable parameters as a set of blobs. */
   vector<shared_ptr<Blob<Dtype> > > blobs_;
   /** Vector indicating whether to compute the diff of each param blob. */
